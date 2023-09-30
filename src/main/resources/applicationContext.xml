@@ -8,11 +8,24 @@
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
     <bean id="musicBean"
+          class="ru.alishev.springcourse.ClassicalMusic">
+    </bean>
+    <bean id="musicBean2"
           class="ru.alishev.springcourse.RockMusic">
+    </bean>
+
+    <bean id="musicBean3"
+          class="ru.alishev.springcourse.RapMusic">
     </bean>
     <bean id="musicPlayer"
           class="ru.alishev.springcourse.MusicPlayer">
-        <property name="music" ref="musicBean"/>
+        <property name="musicList">
+            <list>
+                <ref bean="musicBean"/>
+                <ref bean="musicBean2"/>
+                <ref bean="musicBean3"/>
+            </list>
+        </property>
 
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
