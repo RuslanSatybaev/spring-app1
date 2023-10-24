@@ -1,6 +1,8 @@
 package ru.alishev.springcourse;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.alishev.springcourse.config.SpringConfig;
+import ru.alishev.springcourse.genres.ClassicalMusic;
 
 public class TestSpring {
     public static void main(String[] args) {

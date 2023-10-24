@@ -1,22 +1,23 @@
 package ru.alishev.springcourse;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import ru.alishev.springcourse.Music;
+
+import java.util.List;
+import java.util.Random;
 
 public class MusicPlayer {
 
     @Value("${musicPlayer.name}")
     private String name;
+
     @Value("${musicPlayer.volume}")
     private int volume;
 
-    private final Music music;
-    private final Music music2;
+    private List<ru.alishev.springcourse.Music> musicList;
 
-    public MusicPlayer(@Qualifier("classicalMusic") Music music,
-                       @Qualifier("rockMusic") Music music2) {
-        this.music = music;
-        this.music2 = music2;
+    public MusicPlayer(List<Music> musicList) {
+        this.musicList = musicList;
     }
 
     public String getName() {
@@ -27,7 +28,10 @@ public class MusicPlayer {
         return volume;
     }
 
-    public void playMusic(MusicGenre genre) {
+    public String playMusic() {
+        Random random = new Random();
 
+        return "Playing: " + musicList.get(random.nextInt(musicList.size())).getSong()
+                + " with volume " + this.volume;
     }
 }
